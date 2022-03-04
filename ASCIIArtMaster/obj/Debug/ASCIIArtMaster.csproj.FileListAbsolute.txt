@@ -1,0 +1,8 @@
+C:\Users\admin\Desktop\My_Folder\Csharp\ASCIIArtMaster\ASCIIArtMaster\bin\Debug\ASCIIArtMaster.exe.config
+C:\Users\admin\Desktop\My_Folder\Csharp\ASCIIArtMaster\ASCIIArtMaster\bin\Debug\ASCIIArtMaster.exe
+C:\Users\admin\Desktop\My_Folder\Csharp\ASCIIArtMaster\ASCIIArtMaster\bin\Debug\ASCIIArtMaster.pdb
+C:\Users\admin\Desktop\My_Folder\Csharp\ASCIIArtMaster\ASCIIArtMaster\obj\Debug\ASCIIArtMaster.csproj.AssemblyReference.cache
+C:\Users\admin\Desktop\My_Folder\Csharp\ASCIIArtMaster\ASCIIArtMaster\obj\Debug\ASCIIArtMaster.csproj.SuggestedBindingRedirects.cache
+C:\Users\admin\Desktop\My_Folder\Csharp\ASCIIArtMaster\ASCIIArtMaster\obj\Debug\ASCIIArtMaster.csproj.CoreCompileInputs.cache
+C:\Users\admin\Desktop\My_Folder\Csharp\ASCIIArtMaster\ASCIIArtMaster\obj\Debug\ASCIIArtMaster.exe
+C:\Users\admin\Desktop\My_Folder\Csharp\ASCIIArtMaster\ASCIIArtMaster\obj\Debug\ASCIIArtMaster.pdb
