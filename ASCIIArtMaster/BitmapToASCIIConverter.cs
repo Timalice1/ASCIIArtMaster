@@ -23,7 +23,6 @@ namespace ASCIIArtMaster {
             //Iterating bitmap line by line
             for(int y = 0; y < _bitmap.Height; y++) {
                 
-           
                 //Iterating pixels in current line
                 for(int x = 0; x < _bitmap.Width; x++) {
                     int mapIndex = (int)Map(_bitmap.GetPixel(x,y).R, 0, 255, 0, _asciiTable.Length-1);//Get required char from _ascciTable
