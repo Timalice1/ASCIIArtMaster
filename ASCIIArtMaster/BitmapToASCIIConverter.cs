@@ -15,18 +15,17 @@ namespace ASCIIArtMaster {
             _bitmap = bitmap;
         }
 
-        public char[][] Convert() {
-            var result = new char[_bitmap.Height][];
+        public char[,] Convert() {
+            char[,] result = new char[_bitmap.Height,_bitmap.Width];
 
             //Iterating bitmap line by line
             for(int y = 0; y < _bitmap.Height; y++) {
-
-                result[y] = new char [_bitmap.Height];//String of chars from _asciiTable
-
+                
+           
                 //Iterating pixels in current line
                 for(int x = 0; x < _bitmap.Width; x++) {
                     int mapIndex = (int)Map(_bitmap.GetPixel(x,y).R, 0, 255, 0, _asciiTable.Length-1);//Get required char from _ascciTable
-                    result[x][y] = _asciiTable[mapIndex];
+                    result[y,x] = _asciiTable[mapIndex];
                 }
             }
 

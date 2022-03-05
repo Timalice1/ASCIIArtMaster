@@ -16,6 +16,9 @@ namespace ASCIIArtMaster {
 
 
             while (true) {
+                Console.WindowHeight = Console.LargestWindowHeight;
+                Console.WindowWidth = Console.LargestWindowWidth;
+
                 Console.ReadLine();
 
                 if (openFileDilaog.ShowDialog() != DialogResult.OK)
@@ -30,6 +33,20 @@ namespace ASCIIArtMaster {
                 //Resize and conver to gray scale
                 bitmap = Resize(bitmap);
                 bitmap.ToGrayScale();
+
+                //Convert img to ascii
+                var converter = new BitmapToASCIIConverter(bitmap);
+                var rows = converter.Convert();
+
+                //Show converted img in console
+                for(int y = 0; y < rows.GetLength(0); y++) {
+                    for (int x = 0; x < rows.GetLength(1); x++) {
+                        Console.Write(rows[y,x]);
+                    }
+                    Console.WriteLine();
+                }
+
+                Console.SetCursorPosition(0, 0);
 
             }
         }
