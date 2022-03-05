@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "23a235aa-dc94-4d59-8bb7-036a49e15222": {
+      "ProjectGuid": "23a235aa-dc94-4d59-8bb7-036a49e15222",
+      "DisplayName": "ASCIIArtMaster",
+      "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Прочие файлы",
+      "ColorIndex": -1
+    }
+  },
+  "NextColorIndex": 1
+}
