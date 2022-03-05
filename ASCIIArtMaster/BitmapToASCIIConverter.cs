@@ -8,7 +8,9 @@ using System.Threading.Tasks;
 namespace ASCIIArtMaster {
     class BitmapToASCIIConverter {
 
-        private readonly char[] _asciiTable = {'.', ',', ':', '+', '*', '?', '%', '$', '#', '@'};
+        private readonly char[] _asciiTable = {' ', '.', ',', ':', '+', '*', '?', '%', '$', '#', '@'}; //Normal color
+        //private readonly char[] _asciiTable = { '@', '#', '$', '%', '?', '*', '+', ':', ',', '.', ' ' }; //Inverted color (negative img)
+
         private readonly Bitmap _bitmap;
 
         public BitmapToASCIIConverter(Bitmap bitmap) {
