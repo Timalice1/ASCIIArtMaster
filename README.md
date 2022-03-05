@@ -1,5 +1,5 @@
 # AsciiArtMaster
 
-Press "Enter" in console
-Select img
-Enjoy!
+Press "Enter" in console<br/>
+Select img<br/>
+Enjoy!<br/>
