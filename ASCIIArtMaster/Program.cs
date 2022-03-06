@@ -2,11 +2,13 @@
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
+using System.IO;
 
 namespace ASCIIArtMaster {
     internal class Program {
-        private const double SCALE = 1.5;
-        private const int MAX_WIDTH = 474; //Max 474, console font size = 8pt
+        private const double SCALE = 2;
+        private const int MAX_WIDTH = 350; //Max 474, console font size = 8pt
+        private static string filePath = null;
 
         [STAThread]
         static void Main(string[] args) {
@@ -19,17 +21,18 @@ namespace ASCIIArtMaster {
 
 
             while (true) {
+                //Clear console from previous img
+                Console.Clear();
+
                 Console.WriteLine("Press enter to start...");
                 Console.ReadLine();
 
                 if (openFileDilaog.ShowDialog() != DialogResult.OK)
                     continue;
-
-                //Clear console from previous img
-                Console.Clear();
-
+                
                 //Create new bitmap from opened file
-                var bitmap = new Bitmap(openFileDilaog.FileName);
+                filePath = openFileDilaog.FileName;
+                var bitmap = new Bitmap(filePath);
 
                 //Resize and conver to gray scale
                 bitmap = Resize(bitmap);
@@ -37,18 +40,26 @@ namespace ASCIIArtMaster {
 
                 //Convert img to ascii
                 var converter = new BitmapToASCIIConverter(bitmap);
-                var rows = converter.Convert();
+                var img = converter.Convert();
 
                 //Show converted img in console
-                for(int y = 0; y < rows.GetLength(0); y++) {
-                    for (int x = 0; x < rows.GetLength(1); x++) {
-                        Console.Write(rows[y,x]);
+                for(int y = 0; y < img.GetLength(0); y++) {
+                    for (int x = 0; x < img.GetLength(1); x++) {
+                        Console.Write(img[y,x]);
                     }
                     Console.WriteLine();
                 }
 
+
                 Console.SetCursorPosition(0, 0);
 
+                Console.ReadLine();
+
+                var res = MessageBox.Show("Save this art to txt file?", "Save", MessageBoxButtons.OKCancel);
+                if (res == DialogResult.OK)
+                    //Save negative img to file
+                    SaveArt(converter.ConvertNegative());
+                else continue;
             }
         }
 
@@ -60,5 +71,31 @@ namespace ASCIIArtMaster {
                 bitmap = new Bitmap(bitmap, new Size(MAX_WIDTH, (int)newHeight));
             return bitmap;
         }
+    
+        //Save art to txt file
+        private static void SaveArt(char[,] art) {
+            FolderBrowserDialog selectFolder = new FolderBrowserDialog();
+
+            string path = null;
+            if(selectFolder.ShowDialog() == DialogResult.OK) {
+                path = selectFolder.SelectedPath;
+            }
+
+            string tmp = filePath.Remove(0, filePath.LastIndexOf("\\") + 1);
+            string fileName = tmp.Remove(tmp.LastIndexOf("."));
+            string destination = path + "\\" + fileName + ".txt";
+
+            using(StreamWriter sw = new StreamWriter(destination)) {
+               for(int y = 0; y < art.GetLength(0); y++) {
+                    for (int x = 0; x < art.GetLength(1); x++) {
+                        sw.Write(art[y,x]);
+                    }
+                    sw.WriteLine();
+                }
+            }
+
+            MessageBox.Show($"Sucessfully saved to\n{destination}");
+        }
+    
     }
 }

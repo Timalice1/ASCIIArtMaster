@@ -9,7 +9,7 @@ namespace ASCIIArtMaster {
     class BitmapToASCIIConverter {
 
         private readonly char[] _asciiTable = {' ', '.', ',', ':', '+', '*', '?', '%', '$', '#', '@'}; //Normal color
-        //private readonly char[] _asciiTable = { '@', '#', '$', '%', '?', '*', '+', ':', ',', '.', ' ' }; //Inverted color (negative img)
+        private readonly char[] _asciiNegative = { '@', '#', '$', '%', '?', '*', '+', ':', ',', '.', ' ' }; //Inverted color (negative img)
 
         private readonly Bitmap _bitmap;
 
@@ -27,6 +27,22 @@ namespace ASCIIArtMaster {
                 for(int x = 0; x < _bitmap.Width; x++) {
                     int mapIndex = (int)Map(_bitmap.GetPixel(x,y).R, 0, 255, 0, _asciiTable.Length-1);//Get required char from _ascciTable
                     result[y,x] = _asciiTable[mapIndex];
+                }
+            }
+
+            return result;
+        }
+
+        public char[,] ConvertNegative() {
+            char[,] result = new char[_bitmap.Height, _bitmap.Width];
+
+            //Iterating bitmap line by line
+            for (int y = 0; y < _bitmap.Height; y++) {
+
+                //Iterating pixels in current line
+                for (int x = 0; x < _bitmap.Width; x++) {
+                    int mapIndex = (int)Map(_bitmap.GetPixel(x, y).R, 0, 255, 0, _asciiTable.Length - 1);//Get required char from _ascciTable
+                    result[y, x] = _asciiNegative[mapIndex];
                 }
             }
 
